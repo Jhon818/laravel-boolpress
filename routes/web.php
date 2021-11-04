@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.home');
 });
 
 Auth::routes();
@@ -23,5 +23,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
+#Gestisce una serie di rotte
+// Route::get('/admin', 'HomeController@index')->name('admin');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')
+->group(function() {
+    #pagina di atterraggion dopo il login (con il prefix, l'url é /admin)
+    Route::get('/', 'Admincontroller@index')->name('index'); 
+});

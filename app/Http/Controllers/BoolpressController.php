@@ -14,7 +14,8 @@ class BoolpressController extends Controller
      */
     public function index()
     {
-        //
+    $postsBoollpress = boolpress::all();
+    return view('guest.posts.index' , compact('posts'));
     }
 
     /**
