@@ -29,5 +29,5 @@ Auth::routes();
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')
 ->group(function() {
     #pagina di atterraggion dopo il login (con il prefix, l'url é /admin)
-    Route::get('/', 'Admincontroller@index')->name('index'); 
+    Route::get('/', 'AdminController@index')->name('index'); 
 });

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
+use App\boolpress;
 
 class PostController extends Controller
 {
@@ -20,6 +20,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = boolpress::all();
     }
 }
