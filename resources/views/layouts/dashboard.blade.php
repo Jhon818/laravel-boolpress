@@ -46,14 +46,14 @@
                 <div class="sidebar-sticky h-100">
                     <ul class="nav flex-column h-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('admin.index') }}">
+                            <a class="nav-link active" href="{{ route('admin.posts.index') }}">
                                 <i class="fas fa-house-user"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.posts.show') }}">
-                                <i class="fas fa-list-alt"></i>
+                            <a class="nav-link" href="{{ route('admin.posts.index') }}" >
+                                <i class="fas fa-list-alt" ></i>
                                 Posts
                             </a>
                         </li>

@@ -35,11 +35,11 @@
                             <label for="content">Content</label>
                             <textarea type="text" name="content" id="content" class="form-control @error('content') is-invalid @enderror">{{old('content')}}</textarea>@error('content') <div class="alert alert-danger">{{ $message }}</div>@enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="thumbnail">Thumbnail</label>
                             <textarea type="text" name="thumbnail" id="thumbnail" class="form-control
                             @error('thumbnail') is-invalid @enderror">{{old('thumbnail')}}</textarea>@error('thumbnail')<div class="alert alert-danger">{{ $message }}</div>@enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="author">Author</label>
                             <input value="{{old('author')}}" type="text" name="author" id="author" class="form-control   

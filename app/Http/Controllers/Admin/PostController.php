@@ -117,7 +117,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'thumb' => 'required',
+            'thumbnail' => 'required',
             'author' => 'required'
         ]);
         $form_data = $request->all();

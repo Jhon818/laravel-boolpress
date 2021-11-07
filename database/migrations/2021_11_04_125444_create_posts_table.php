@@ -13,13 +13,11 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
-            $table->timestamp('slug')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('content');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
