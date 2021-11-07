@@ -30,13 +30,13 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="thumbnail">Thumbnail</label>
                             <input value="{{old('thumbnail', $post->thumbnail)}}" type="text" name="thumbnail" id="thumbnail" class="form-control">
                             @error('thumbnail')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Modifica</button>
