@@ -14,20 +14,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home');
-});
+// Rotta che gestisce la homepage visible agli utenti
+Route::get('/', 'HomeController@index')->name('index');
 
+//Rotta per guest
+Route::resource('/posts', 'PostController');
+
+//Serie di rotte che gestisce tutto il meccanismo di autenticazione
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-#Gestisce una serie di rotte
+//Serie di rotte che gestiscono il backoffice (parte amministrativa)
 // Route::get('/admin', 'HomeController@index')->name('admin');
 
-Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')
-->group(function() {
-    #pagina di atterraggion dopo il login (con il prefix, l'url é /admin)
-    Route::get('/', 'AdminController@index')->name('index'); 
-});
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')
+    ->group(function() {
+        //Pagina di atterragio dopo il login (con il prefix, l'url è /admin)
+        Route::get('/','HomeController@index')->name('index');
+
+        Route::resource('/posts', 'PostController');
+    });

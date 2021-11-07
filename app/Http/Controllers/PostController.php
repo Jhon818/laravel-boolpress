@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\boolpress;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class BoolpressController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BoolpressController extends Controller
      */
     public function index()
     {
-    $postsBoollpress = boolpress::all();
-    return view('guest.posts.index' , compact('posts'));
+        $posts = Post::all();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -41,22 +42,27 @@ class BoolpressController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\boolpress  $boolpress
+    
+     * @param string $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(boolpress $boolpress)
+    public function show($slug)
     {
-        //
+        $post = Post::where('slug', $slug)->first();
+        if (!$post) {
+            abort(404);
+        }
+        return view('guest.posts.show' , compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\boolpress  $boolpress
+     * 
+     * 
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(boolpress $boolpress)
+    public function edit($id)
     {
         //
     }
@@ -65,22 +71,22 @@ class BoolpressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\boolpress  $boolpress
+     
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, boolpress $boolpress)
+    public function update(Request $request,$id)
     {
-        //
+       //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\boolpress  $boolpress
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(boolpress $boolpress)
-    {
-        //
+    public function destroy($id)
+    {//
     }
 }
