@@ -35,11 +35,16 @@
                             <label for="content">Content</label>
                             <textarea type="text" name="content" id="content" class="form-control @error('content') is-invalid @enderror">{{old('content')}}</textarea>@error('content') <div class="alert alert-danger">{{ $message }}</div>@enderror
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="thumbnail">Thumbnail</label>
-                            <textarea type="text" name="thumbnail" id="thumbnail" class="form-control
-                            @error('thumbnail') is-invalid @enderror">{{old('thumbnail')}}</textarea>@error('thumbnail')<div class="alert alert-danger">{{ $message }}</div>@enderror
-                        </div> --}}
+                        <div class="form-group">
+                            <label for="category_id">category_id</label>
+                            <select name="category_id" id="category_id" class="form-control  @error('category_id') is_invalid @enderror">
+                                <option value=""> seleziona</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{old('category_id') == $category->id ? 'selected' : null}}>{{ $category->name }}</option>
+                                    
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="author">Author</label>
                             <input value="{{old('author')}}" type="text" name="author" id="author" class="form-control   

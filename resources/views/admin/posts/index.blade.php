@@ -33,12 +33,19 @@
                 <th scope="col"># ID</th>
                 <th scope="col">Titolo</th>
                 <th class="text-center" scope="col">Actions</th>
+                <th class="text-center" scope="col">Category</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($posts as $post)
                     <tr>
                         <th scope="row">{{$post->id}}</th>
+                        <th scope="row">{{$post->slug}}</th>
+                 <td>
+                     @if ($post->category)
+                     {{ $post->category->name }} 
+                     @endif
+                 </td>
                         <td><a href="{{ route('admin.posts.show', $post->id) }}">{{$post->title}}</a></td>
                         <td class="text-center">
                             <a class="mx-2 text-reset btn btn-warning" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
