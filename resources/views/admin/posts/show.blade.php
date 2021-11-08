@@ -11,13 +11,12 @@
                         <h1 class="fw bolder mb-1">{{ $post->title }}</h1>
                     </header>
                     <div class="text-muded fst-italic mb-2">Author: {{ $post->author }}</div>
-                    <figure class="mb-4">
-                        <img src="{{ $post->thumbnail }}" alt="" class="img-fluid rounded">
-                    </figure>
                     <section class="mb-5">
                         <p class="fs-5">
                             {{ $post->content }}
                         </p>
+                        <small>Lo slug é: {{ $post->slug }}</small><br>
+                        <small>Categoria di appartenenza: <a href="{{route('admin.categories.show', $post->category->id)}}"> {{ $post->category->name }}</a></small>
                     </section>
                 </article>
                 
