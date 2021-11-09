@@ -57,6 +57,14 @@
                         </div>
 
                         <div class="form-group">
+                            <p>Seleziona i tag</p>
+                            <div class="form-check form-check-inline">
+                                <input name="tags[]" class="form-check-input" type="checkbox">
+                                <label class="form-check-label">Test Check</label>
+                              </div>
+                        </div>
+
+                        <div class="form-group">
                             <button type="submit" class="btn btn-success">Crea post</button>
                         </div>
 
