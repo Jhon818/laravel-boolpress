@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Category;
-use App\Post;
 use App\Http\Controllers\Controller;
+use App\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.index',compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -51,7 +52,7 @@ class CategoryController extends Controller
     {
         //Select * from categories WHERE slug = $slug
         // $category = Post::where('slug', $slug)->first();
-        if(!$category) {
+        if (!$category) {
             abort(404);
         } else {
             return view('admin.categories.show', compact('category'));
@@ -66,12 +67,12 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        if(!$category) {
+        if (!$category) {
             abort(404);
         }
         $categories = Post::all();
-         $posts = Post::all();
-        return view('admin.categories.edit', compact('posts','category'));
+        $posts = Post::all();
+        return view('admin.categories.edit', compact('posts', 'category'));
     }
 
     /**
@@ -81,9 +82,29 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        #validating the name
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $form_data = $request->all();
+        if ($form_data['name'] != $category->name) {
+            $slug = Str::slug($form_data['name'], '-');
+
+            $slug_presente = Category::where('slug', $slug)->first();
+            $contatore = 1;
+            while ($slug_presente) {
+                $slug = $slug . '-' . $contatore;
+                $slug_presente = Category::where('slug', $slug)->first();
+                $contatore++;
+            }
+            $form_data['slug'] = $slug;
+        }
+
+        $category->update($form_data);
+
+        return redirect()->route('admin.categories.index')->with('inserted', 'La categoria è stata correttamente aggiornata');
     }
 
     /**
@@ -96,6 +117,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('deleted','Categoria eliminata');
+        return redirect()->route('admin.categories.index')->with('deleted', 'Categoria eliminata');
     }
 }

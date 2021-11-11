@@ -1,28 +1,23 @@
+@extends('layouts.dashboard')
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-        <title>Boolean Forum</title>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-      
-    </head>
-    <body class="my-bg">
-        <div class="flex-center position-ref full-height">
-        <p>ffff</p>
-                </div>
-     
-
-            <div class="content">
-               
-
-                <div class="links">
-                    <a href="{{route('posts.index')}}">Post</a>
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection

@@ -8,6 +8,7 @@
                         <h2 class="mt-2 mb-3 text-white"> Crea post</h2>
                     </div>
                     <div class="card-body d-flex flex-column py-3 my-hr px-4">
+                        
                         <form action="{{ route('admin.categories.update', $category->id)}}" method="post">
                             @csrf
                             @method('PUT')
