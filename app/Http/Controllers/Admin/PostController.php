@@ -41,8 +41,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
+    //Per prima cosa valido i dati che arrivano dal form
+
+    
     {
-         //Per prima cosa valido i dati che arrivano dal form
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
@@ -52,7 +55,6 @@ class PostController extends Controller
         ]);
         
         $form_data = $request->all();
-        // dd($form_data);
 
         $new_post = new Post();
         $new_post->fill($form_data);

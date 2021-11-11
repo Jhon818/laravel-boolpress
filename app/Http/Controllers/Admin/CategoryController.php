@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Post;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
@@ -63,9 +64,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        if(!$category) {
+            abort(404);
+        }
+        $categories = Post::all();
+         $posts = Post::all();
+        return view('admin.categories.edit', compact('posts','category'));
     }
 
     /**
