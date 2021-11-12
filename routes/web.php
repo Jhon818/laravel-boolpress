@@ -37,5 +37,5 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')
 
         #Rotta per la pagina profilo
         Route::get('/profile', 'HomeController@profile')->name('profile');
-        Route::post('/generate-token', 'HomeController@generateToken')->name('generate-token');
+        Route::get('/generate-token', 'HomeController@generateToken')->name('generate-token');
     });

@@ -29,7 +29,7 @@ class HomeController extends Controller
     }
 
     public function listPostsApi() {
-        return view('api.app');
+        return view('api.index');
     }
 
     public function profile() {
