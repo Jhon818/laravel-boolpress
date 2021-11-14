@@ -18,7 +18,7 @@ export default {
     return {
       url: "http://127.0.0.1:8000/api/posts",
       posts: [],
-      api_token: ''
+      api_token: 'PjxdOC6c4TnANlK1aKMdg0gOLE5R6ImxN1ll7JJGCk93g1OlOO2hpzLcVGqHRG3L71GhNLVqQ0XBCuhk'
     };
   },
   created() {

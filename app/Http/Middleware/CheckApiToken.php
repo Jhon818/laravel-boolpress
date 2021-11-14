@@ -19,7 +19,7 @@ class CheckApiToken
     {
         // return $next($request);
         #recupero l'autorization token dalla request
-        $aut_token = request()->header('authorization');
+        $aut_token = $request->header('authorization');
         #verifa del token
         if (empty($aut_token)) {
            return response()->json([

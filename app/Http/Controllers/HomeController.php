@@ -32,19 +32,5 @@ class HomeController extends Controller
         return view('api.index');
     }
 
-    public function profile() {
-        return view('admin.profile');
-    }
 
-    public function generateToken() {
-       $api_token = Str::random(80);
-
-       #assegniamo all'utente corrente l'api_token
-
-       $user = Auth::user();
-       $user->api_token = $api_token;
-       $user->save();
-
-       return redirect()->route('admin.profile');
-    }
 }
