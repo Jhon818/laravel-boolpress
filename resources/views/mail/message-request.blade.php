@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Roouter Excercise</title>
+    <title>Mail</title>
 </head>
 <body>
-    <div id="app">
-
-    </div>
-
-    <script src="{{ asset('js/front.js') }}"></script>
+    <p>
+        Hai ricevuto un nuovo messaggio , ecco qui i dettagli <br>
+        Nome: {{$lead->name}}<br>
+        Mail:{{$lead->mail}}<br>
+        Messaggio:{{$lead->message}}
+    </p>
 </body>
 </html>

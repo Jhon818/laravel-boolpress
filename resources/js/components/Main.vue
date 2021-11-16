@@ -1,13 +1,7 @@
 
 <template>
   <main>
-    <div class="row"></div>
-    <div class="col-12" v-for="post in posts" :key="post.id">
-
-        <ul>
-            <li>{{ post.title }}</li>
-        </ul>
-    </div>
+   <RouterView />
   </main>
 </template>
 

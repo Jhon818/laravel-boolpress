@@ -21,6 +21,10 @@ Route::get('/vue-posts', 'HomeController@listPostsApi')->name('list-posts-api');
 //Rotta per guest
 Route::resource('/posts', 'PostController');
 
+Route::get('/contact', 'HomeController@contact')->name('contacts');
+Route::post('/contact', 'HomeController@handleContactForm')->name('contacts.send');
+Route::get('/thank-you', 'HomeController@thankYou')->name('contacts.thank-you');
+
 //Serie di rotte che gestisce tutto il meccanismo di autenticazione
 Auth::routes();
 
@@ -38,4 +42,8 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')
         #Rotta per la pagina profilo
         Route::get('/profile', 'HomeController@profile')->name('profile');
         Route::post('/generate-token', 'HomeController@generateToken')->name('generate-token');
+
+        Route::get('/deleteImage/{cover_path}' , 'PostController@deleteImage' )->name('deleteImage');
     });
+
+    Route::get('/{any}', 'SpaController@index')->where('any', '.*');

@@ -2,6 +2,7 @@ window.Vue = require('vue');
 window.axios = require('axios');
 
 import App from "./components/views/App";
+import router from "./components/router";
 
 /**
  * The following block of code may be used to automatically register your

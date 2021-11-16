@@ -12,6 +12,10 @@
                   <p class="card-text">{!! $post->content !!}</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
+                @if ($post->cover)
+                <img src="{{ asset('storage' . $post->cover) }}" alt="">
+                    
+                @endif
               </div>
         </div>
     </div>

@@ -40,6 +40,27 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            @if ($post->cover)
+                                <p>Immagine di copertina</p>
+                                <img class="d-block" src="{{ asset('storage/' .$post->cover)}}" alt="" srcset="">
+                                   <a href="{{ asset('admin.deleteImage' , substr($post->cover , 12)) }}">Cancella Immagine</a> 
+                                @else
+                                <p>immagine di copertina</p>
+                                    
+                                @endif
+                            @endif
+                            <label class="d-block" for="image">Immagine di copertina</label>
+                          <input type="file" name="image" id="image">
+                            @error('image')
+                                is-invalid
+                            @enderror">
+                            @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                
                         <div class="form-group">
                             <p>Seleziona i tag</p>
                             @foreach ($tags as $tag)

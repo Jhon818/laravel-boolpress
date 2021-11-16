@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/posts', 'Api\PostController@index')->middleware('api_token_check');
+Route::post('/post/{slug}', 'Api\PostController@show')->middleware('api_token_check');

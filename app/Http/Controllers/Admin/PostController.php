@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str; //classe per utilizzare dei metodi (tipo per creare lo slug)
@@ -51,10 +51,19 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'author' => 'required',
-            'tags' => 'exists:tags,id'
+            'tags' => 'exists:tags,id',
+            'image' => 'nullable|image'
         ]);
         
         $form_data = $request->all();
+
+        if (array_key_exists('image' ,$form_data)) {
+            $cover_path = Storage::put('post_covers', $form_data['image']);
+
+            #aggiungiamo all'array che viene usato nella funzione fill
+            $form_data['cover'] = $cover_path;
+        }
+
 
         $new_post = new Post();
         $new_post->fill($form_data);
@@ -74,6 +83,9 @@ class PostController extends Controller
         }
 
         $new_post->slug = $slug;
+        #verifico se è stata caricata l'immagine
+     
+
         $new_post->save();
 
         $new_post->tags()->attach($form_data['tags']);
@@ -82,7 +94,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource
      *
      * @param  Post $post
      * @return \Illuminate\Http\Response
@@ -128,7 +140,8 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'exists:tags,id',
-            'author' => 'required'
+            'author' => 'required',
+            'image' => 'nullable|image'
         ]);
         $form_data = $request->all();
         //Verifico se il titolo ricevuto dal form è diverso dal vecchio
@@ -149,6 +162,13 @@ class PostController extends Controller
             $form_data['slug'] = $slug;
         }
 
+        #verifico se è stata caricata l'immmagine
+        if (array_key_exists('image' , $form_data)) {
+            Storage::delete($post->cover);
+            $cover_path = Storage::put('post_covers' , $form_data['image']);
+            $form_data['cover'] = $cover_path; 
+
+        }
         $post->update($form_data);
 
         if (array_key_exists('tags' , $form_data)) {
@@ -175,5 +195,11 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with('status','Post eliminato');
+    }
+
+    public function deleteImage($cover_path) {
+        $cover_path = 'post_covers/' . $cover_path;
+        Storage::delete($cover_path);
+        return redirect()->route('admin.posts.index');
     }
 }
