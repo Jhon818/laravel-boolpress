@@ -33,14 +33,14 @@
                         </div>
 
                         <div class="form-group">
-                            @if ($post->cover)
-                            <p>immagine di copertina presente</p>
+                          
+                            {{-- <p>immagine di copertina presente</p>
                             <img class="d-block" src="{{ asset('storage' . $post->cover) }}" alt="" srcset="">
                             <a href="{{ route('admin.posts.deleteImage')}}"></a>
-                            @else 
+                          
                            <p>immagine di copertina non presente</p>
-                            @endif
-                         
+                            
+                          --}}
                             <label for="content">Content</label>
                             <textarea type="text" name="content" id="content"
                                 class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>@error('content')

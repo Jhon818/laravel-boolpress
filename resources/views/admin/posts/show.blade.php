@@ -12,11 +12,22 @@
                     </header>
                     <div class="text-muded fst-italic mb-2">Author: {{ $post->author }}</div>
                     <section class="mb-5">
-                        <p class="fs-5">
-                            {{ $post->content }}
-                        </p>
-                        <small>Lo slug é: {{ $post->slug }}</small><br>
-                        <small>Categoria di appartenenza: <a href="{{route('admin.categories.show', $post->category->id)}}"> {{ $post->category->name }}</a></small>
+                      
+                          
+                                    <div class="card" style="width: 18rem;">
+                                         {{ $post->title }}
+                                        <div class="card-body">
+                                          <h5 class="card-title"> {{ $post->slug }}</h5>
+                                          <p class="card-text">{!! $post->content !!}</p>
+                                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                        @if ($post->cover)
+                                        <img src="{{ asset('storage/' . $post->cover) }}" alt="">
+                                            
+                                        @endif
+    
+                            
+                        </div>
                     </section>
                 </article>
                 

@@ -46,10 +46,10 @@
                      {{ $post->category->name }} 
                      @endif
                  </td>
-                        <td><a href="{{ route('admin.posts.show', $post->id) }}">{{$post->title}}</a></td>
+                        <td><a href="{{ route('admin.posts.show', $post->slug) }}">{{$post->title}}</a></td>
                         <td class="text-center">
-                            <a class="mx-2 text-reset btn btn-warning" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
-                            <form class="delete-post" action="{{route('admin.posts.destroy', $post->id)}}" class="d-inline-block delete-post" method="post">
+                            <a class="mx-2 text-reset btn btn-warning" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
+                            <form class="delete-post" action="{{route('admin.posts.destroy', $post->slug)}}" class="d-inline-block delete-post" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger mx-2" type="submit">DELETE</button>

@@ -46,4 +46,4 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')
         Route::get('/deleteImage/{cover_path}' , 'PostController@deleteImage' )->name('deleteImage');
     });
 
-    Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+    // Route::get('/{any}', 'SpaController@index')->where('any', '.*');

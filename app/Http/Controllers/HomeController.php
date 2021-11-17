@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('guest.contacts');
     }
 
-    public function handelContactForm(Request $request)
+    public function handleContactForm(Request $request)
     {
         $form_data = $request->all();
         $new_lead = new Lead();
